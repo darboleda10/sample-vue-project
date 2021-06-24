@@ -1,9 +1,16 @@
 <template>
   <div>
     <div v-show="!loading && driver">
-      <div class="back-link" @click="navigateBack()">
-        <v-icon>fas fa-home</v-icon>
-        <p>Back to Drivers</p>
+      <div class="back-link" @click="navigateBack()">     
+
+        <v-tooltip right>
+          <template v-slot:activator="{ on, attrs }">
+            <v-icon color="primary" dark v-bind="attrs" v-on="on">
+             fas fa-home
+            </v-icon>
+          </template>
+          <span>Back to Drivers</span>
+        </v-tooltip>
       </div>
       <div>
         <h3>Driver Info</h3>
