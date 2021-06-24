@@ -8,13 +8,14 @@ import DriversLayout from '@/layouts/drivers'
 
 // Views
 import DriversIndex from '@/views/drivers'
+import DriverDetails from '@/views/driver-details'
 
 Vue.use(Router)
 
 const router = new Router({
     mode: 'history',
     scrollBehavior(to, from, savedPosition) {
-        return {x: 0, y: 0}
+        return { x: 0, y: 0 }
     },
     base: process.env.BASE_URL,
     routes: [
@@ -30,6 +31,13 @@ const router = new Router({
                     path: '/',
                     name: 'drivers-index',
                     component: DriversIndex
+                }, {
+                    path: '/:id',
+                    name: 'driver-details',
+                    component: DriverDetails,
+                    props: {
+                        default: true
+                    }
                 }
             ]
         }
@@ -52,7 +60,7 @@ function nextFactory(context, middleware, index) {
         // Than run the subsequent Middleware with a new
         // `nextMiddleware()` callback.
         const nextMiddleware = nextFactory(context, middleware, index + 1);
-        subsequentMiddleware({...context, next: nextMiddleware});
+        subsequentMiddleware({ ...context, next: nextMiddleware });
     };
 }
 
@@ -75,7 +83,7 @@ router.beforeEach((to, from, next) => {
         };
         const nextMiddleware = nextFactory(context, middleware, 1);
 
-        return middleware[0]({...context, next: nextMiddleware});
+        return middleware[0]({ ...context, next: nextMiddleware });
     }
 
     return next();
