@@ -2,6 +2,7 @@
   <div>
     <div v-show="!loading && driver">
       <div class="back-link" @click="navigateBack()">
+        <v-icon>fas fa-home</v-icon>
         <p>Back to Drivers</p>
       </div>
       <div>
@@ -45,8 +46,12 @@ export default {
 <style scoped lang="scss">
 .back-link {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-self: center;
   cursor: pointer;
+  p {
+    margin: 0 0 0 5px;
+  }
 }
 div {
   margin: 10px 0 10px 10px;
